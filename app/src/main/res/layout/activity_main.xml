@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+    android:layout_gravity="center"
+
+    tools:context="com.example.milde.sqliteapplication.MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+        android:text="Hallo Datenbank"
+
+        android:textAlignment="center"
+        android:textSize="40dp" />
+
+    <Button
+        android:id="@+id/btnAddRecord"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="add record"
+        android:textSize="20dp"
+        />
+
+    <Button
+        android:id="@+id/btnDeleteRecord"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="delete record"
+        android:textSize="20dp"
+        />
+
+    <Button
+        android:id="@+id/btnCountRecords"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="count records"
+        android:textSize="20dp"
+        />
+
+    <Button
+        android:id="@+id/btnListRecords"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="list records"
+        android:textSize="20dp"
+        />
+
+    <TextView
+        android:id="@+id/tvAusgabe"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:maxLines="10"
+        android:text="Ausgabe"
+        android:textSize="15dp"
+
+        />
+
+
+</LinearLayout>
