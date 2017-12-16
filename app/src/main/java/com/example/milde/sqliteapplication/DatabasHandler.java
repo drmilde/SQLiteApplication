@@ -129,8 +129,9 @@ public class DatabasHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.rawQuery(selectQuery, null);
-        cursor.close();
 
+        // TODO cursor wird hier geschlossen, führt zum Absturz ... wann genau muss der cursor geschlossen werden ?
+        //cursor.close();
 
         return cursor.getCount();
     }
