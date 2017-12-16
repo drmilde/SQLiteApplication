@@ -2,6 +2,7 @@ package com.example.milde.sqliteapplication;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -19,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
 
         dbh = new DatabasHandler(this);
         tvAusgabe = (TextView) findViewById(R.id.tvAusgabe);
+        tvAusgabe.setMovementMethod(new ScrollingMovementMethod());
+
 
         Button btnAddContact = (Button) findViewById(R.id.btnAddRecord);
         btnAddContact.setOnClickListener(new View.OnClickListener() {

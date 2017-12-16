@@ -59,7 +59,8 @@
         android:maxLines="10"
         android:text="Ausgabe"
         android:textSize="15dp"
-
+        android:inputType="textMultiLine"
+        android:scrollbars="vertical"
         />
 
 
