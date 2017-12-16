@@ -52,13 +52,21 @@
         android:textSize="20dp"
         />
 
+    <Button
+        android:id="@+id/btnClearTable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="clear table"
+        android:textSize="20dp"
+        />
+
     <TextView
         android:id="@+id/tvAusgabe"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:maxLines="10"
         android:text="Ausgabe"
-        android:textSize="15dp"
+        android:textSize="18dp"
         android:inputType="textMultiLine"
         android:scrollbars="vertical"
         />

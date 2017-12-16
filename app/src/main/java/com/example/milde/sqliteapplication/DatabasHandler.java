@@ -38,15 +38,16 @@ public class DatabasHandler extends SQLiteOpenHelper {
                         + KEY_NAME + " TEXT, "
                         + KEY_PHONE_NUMBER + " TEXT"
                         + ")";
-
-        Log.d("Jan", CREATE_STATEMENT);
-
         sqLiteDatabase.execSQL(CREATE_STATEMENT);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
         // loeschen, falls Table existiert
+        recreateDatabase(sqLiteDatabase);
+    }
+
+    private void recreateDatabase(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTACTS);
 
         // wieder erzeugen
@@ -86,19 +87,20 @@ public class DatabasHandler extends SQLiteOpenHelper {
         );
 
         if (cursor != null) {
-            cursor.moveToFirst();
+            if (cursor.moveToFirst()) { // ist da überhaupt ein Datensatz
+                Contact contact = new Contact(
+                        Integer.parseInt(cursor.getString(0)),
+                        cursor.getString(1),
+                        cursor.getString(2)
+                );
+
+                return contact;
+            }
         }
-
-        Contact contact = new Contact(
-                Integer.parseInt(cursor.getString(0)),
-                cursor.getString(1),
-                cursor.getString(2)
-        );
-
 
         // TODO muss der cursor hier geschlossen werden ????
 
-        return contact;
+        return null;
     }
 
     public List<Contact> getAllContacts() {
@@ -130,7 +132,7 @@ public class DatabasHandler extends SQLiteOpenHelper {
 
         Cursor cursor = db.rawQuery(selectQuery, null);
 
-        // TODO cursor wird hier geschlossen, führt zum Absturz ... wann genau muss der cursor geschlossen werden ?
+        // TODO cursor wird hier geschlossewurden, führt zum Absturz ... wann genau muss der cursor geschlossen werden ?
         //cursor.close();
 
         return cursor.getCount();
@@ -143,13 +145,12 @@ public class DatabasHandler extends SQLiteOpenHelper {
         values.put(KEY_NAME, c.get_name());
         values.put(KEY_PHONE_NUMBER, c.get_phone_number());
 
-        return db.update (
+        return db.update(
                 TABLE_CONTACTS,
                 values,
                 KEY_ID + "=?",
-                new String[] {String.valueOf(c.get_id())}
+                new String[]{String.valueOf(c.get_id())}
         );
-
     }
 
     public void deleteContact(Contact c) {
@@ -157,9 +158,14 @@ public class DatabasHandler extends SQLiteOpenHelper {
         db.delete(
                 TABLE_CONTACTS,
                 KEY_ID + "=?",
-                new String[] {String.valueOf(c.get_id())}
+                new String[]{String.valueOf(c.get_id())}
         );
-        db.close();
+        //db.close();
+    }
+
+    public void clearTable() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        recreateDatabase(db);
     }
 
 }

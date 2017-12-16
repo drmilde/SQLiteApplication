@@ -46,12 +46,40 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Count number of records
-        Button btnCountRecords = (Button)findViewById(R.id.btnCountRecords);
+        Button btnCountRecords = (Button) findViewById(R.id.btnCountRecords);
         btnCountRecords.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int count = dbh.getContactsCount();
-                setAusgabe(count+"");
+                setAusgabe(count + "");
+            }
+        });
+
+        // delete first record
+        Button btnDeleteRecord = (Button) findViewById(R.id.btnDeleteRecord);
+        btnDeleteRecord.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // klappt nur einmal :)
+                int count = dbh.getContactsCount();
+                if (count > 0 ) {
+                    Contact c = dbh.getContact(1);
+                    if (c != null) {
+                        dbh.deleteContact(c);
+                        updateAusgabeListe();
+                    }
+                }
+            }
+        });
+
+
+        // tabelle dropen und wieder neu erstellen
+        Button btnClearTable = (Button)findViewById(R.id.btnClearTable);
+        btnClearTable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dbh.clearTable();
+                updateAusgabeListe();
             }
         });
 
