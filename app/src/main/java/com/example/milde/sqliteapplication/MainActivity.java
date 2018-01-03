@@ -1,5 +1,6 @@
 package com.example.milde.sqliteapplication;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,7 +12,7 @@ import android.widget.TextView;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private DatabasHandler dbh;
+    private DatabaseHandler dbh;
     private TextView tvAusgabe;
 
     @Override
@@ -19,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        dbh = new DatabasHandler(this);
+        dbh = new DatabaseHandler(this);
         tvAusgabe = (TextView) findViewById(R.id.tvAusgabe);
         tvAusgabe.setMovementMethod(new ScrollingMovementMethod());
 
@@ -80,6 +81,18 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 dbh.clearTable();
                 updateAusgabeListe();
+            }
+        });
+
+
+        // ListViewAcivity anzeigen
+
+        Button btnShowTableInListView = (Button)findViewById(R.id.btnShowTableInListView);
+        btnShowTableInListView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentDatabaseScrolling = new Intent(getApplicationContext(), DatabaseScrollingActivity.class);
+                startActivity(intentDatabaseScrolling);
             }
         });
 

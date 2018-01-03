@@ -60,6 +60,15 @@
         android:textSize="20dp"
         />
 
+    <Button
+        android:id="@+id/btnShowTableInListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="show table in ListView"
+        android:textSize="20dp"
+        />
+
+
     <TextView
         android:id="@+id/tvAusgabe"
         android:layout_width="match_parent"
@@ -70,6 +79,5 @@
         android:inputType="textMultiLine"
         android:scrollbars="vertical"
         />
-
 
 </LinearLayout>

@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +13,7 @@ import java.util.List;
  * Created by milde on 15.12.17.
  */
 
-public class DatabasHandler extends SQLiteOpenHelper {
+public class DatabaseHandler extends SQLiteOpenHelper {
 
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "kontaktDatenbank";
@@ -25,7 +24,7 @@ public class DatabasHandler extends SQLiteOpenHelper {
     public static final String KEY_PHONE_NUMBER = "phone";
 
 
-    public DatabasHandler(Context context) {
+    public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -132,7 +131,7 @@ public class DatabasHandler extends SQLiteOpenHelper {
 
         Cursor cursor = db.rawQuery(selectQuery, null);
 
-        // TODO cursor wird hier geschlossewurden, führt zum Absturz ... wann genau muss der cursor geschlossen werden ?
+        // TODO cursor wird hier geschlosse, führt zum Absturz ... wann genau muss der cursor geschlossen werden ?
         //cursor.close();
 
         return cursor.getCount();
